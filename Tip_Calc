@@ -1,0 +1,5 @@
+total = float(input("Enter your total bill: "))
+x = float(total)
+tip = x*.18
+tip = int(tip)
+print("With your bill of", total, "dollars, with tip of 18% you should be tipping", tip, "dollars.")
