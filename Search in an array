@@ -1,0 +1,18 @@
+while True:
+
+  num = int(input("What would you like to search for?: "))
+
+  list = [1, 8, 78, 4, 85, 14, 15, 61, 71]
+
+  def search(list):
+    if num in list:
+      print("Yes,", num, "has been found!")
+    else:
+      print("No,", num, "was not found.")
+  search(list)
+
+  repeat = input("Press any key to search again, or press 'q' to quit searching. " )
+  print("___________________________________")
+  print(" ")
+  if repeat == 'q':
+    break
