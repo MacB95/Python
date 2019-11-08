@@ -1,0 +1,12 @@
+while True:
+
+  tempc = int(input("Enter the temperature in Celsius: "))
+  tempf = tempc * 1.8 + 32
+  print(" ")
+  print(tempc, "degrees Celsius in fahrenheit is", tempf, "degrees.")
+  print(" ")
+  choice = input("Press any key to try another calcularion or press 'q' to quit. ")
+  print(" ")
+
+  if choice == 'q':
+    break
