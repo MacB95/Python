@@ -1,0 +1,40 @@
+tasks = []
+
+while True:
+
+  choice = input("Press 1 to add a task, 2 to delete a task, 3 to view all tasks, or press q to quit. : ")
+  print(" ")
+
+  if choice == "1":
+    title = input("Input task: ")
+    priority = input("Task priority? High, medium, or low: ")
+    task = {"Task: ": title, "Priority: ": priority}
+    tasks.append(task)
+    print(" ")
+  
+  if choice == "2":
+    print(tasks)
+    print("___")
+    choice = input("Which task would you like to delete? Enter an index number: ")
+    print(" ")
+    tasklist = {"Task: ": title, "Priority: ": priority}
+    def delete_task():
+      del(choice[tasks])
+      print(f"You have deleted this task! ")
+    delete_task()
+
+  if choice == "3":
+    print("Below is your current list of tasks. ")
+    print("___")
+    print(" ")
+    tasklist = {"Task: ": title, "Priority: ": priority}
+    for task in tasks:
+      print(tasklist)
+      print(" ")
+
+  if choice == "q":
+    break
+
+tasklist = {"Task: ": title, "Priority: ": priority}
+
+print(tasklist)
