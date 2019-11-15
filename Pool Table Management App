@@ -1,0 +1,92 @@
+import datetime
+from datetime import timedelta
+import json
+
+todays_date = datetime.datetime.now() 
+file_name = todays_date.strftime("%m-%d-%y.json")
+print(file_name)
+print("")
+
+pool_tables = []
+
+class PoolTable:
+  def __init__(self, tableno):
+    self.tableno = tableno
+    self.startTime = datetime.datetime.now()
+    self.endTime = datetime.datetime.now()
+    self.is_available = True
+
+  def checkOut(self):
+    self.startTime = datetime.datetime.now()
+    self.is_available = False
+
+  def checkIn(self):
+    self.endTime = datetime.datetime.now()
+    self.is_available = True
+    pool_tables.append(pool_table)
+
+  def to_dictionary(self):
+    return {"Table Number": self.tableno,
+      "Start Time": self.startTime.strftime("%m/%d/%Y, %H:%M:%S"),
+      "End Time": self.endTime.strftime("%m/%d/%Y, %H:%M:%S"),
+      "Available": True}
+
+
+def newTables():
+  for index in range(1, 13):
+    pool_table = PoolTable(index)
+    pool_tables.append(pool_table)
+
+newTables()
+
+def viewTables():
+  for table in pool_tables:
+    print(f"Table No: {table.tableno} - Available: {table.is_available}")
+    print("")
+
+
+
+while True:
+  print("Press 1 to view all tables.")
+  print("Press 2 to check-out a table for use.")
+  print("Press 3 to check-in a table.")
+  print("Press q to terminate application.")
+  print("")
+  choice = input("What would you like to do?: ")
+  print("")
+
+  if choice == "1":
+    viewTables()
+  elif choice == "2":
+    try:
+      tableno = int(input("Which table would you like to check-out? "))
+      print("")
+      pool_table = pool_tables[tableno - 1]
+      if pool_table.is_available == False:
+        st = pool_table.startTime.strftime("%m/%d, at %H:%M")
+        print(f"This table became occupied on " + st + ".")
+        print("")
+      pool_table.checkOut()
+    except:
+      print("Try a number between 1 and 12.")
+      print("")
+  elif choice == "3":
+    tableno = int(input("Which table would you like to check back in? "))
+    print("")
+    old_time = datetime.datetime.now()
+    new_time = datetime.datetime.now() + timedelta(minutes=1)
+    time_played = (new_time - old_time).total_seconds() / 60
+    print(time_played)
+    print("")
+    pool_table = pool_tables[tableno - 1]
+    pool_table.checkIn()
+
+  elif choice == "q":
+    list = []
+    for table in pool_tables:
+      dict = table.to_dictionary()
+      list.append(dict)
+    break
+
+with open(file_name,'w') as file_object: 
+  json.dump(list, file_object)
